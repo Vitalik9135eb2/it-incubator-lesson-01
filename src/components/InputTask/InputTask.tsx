@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {Input} from "./Input";
 import {Btn} from "../BtnTask/Btn";
 import {FullInput} from "./FullInput";
@@ -19,16 +19,29 @@ export  const InputTask = () => {
         <li key={Math.random()}>{item.message}</li>
     ))
 
-    const addMessage = (message:string) => {
-        console.log(message)
+    /* if btn and input different component */
+
+    const [text, setText] = useState("")
+
+    const onClickBtnHandler = () => {
+        setMessage([{message: text},...message])
+        setText("")
+
     }
 
+    /* ************** End *****************************  */
     return(
         <div>
-            {/*<Input/>*/}
-            {/*<Btn name={'+'} callBack={() => addMessage("sdsd")}/>*/}
+            <div>
+                <Input
+                    value={text}
+                    setValue={setText}
+                />
+                <Btn name={'+'} callBack={() =>{onClickBtnHandler()}}/>
+            </div>
 
-            <FullInput message={message} setMessage={setMessage}/>
+
+            {/*<FullInput message={message} setMessage={setMessage}/>*/}
 
             <ul>
                 {messageList}

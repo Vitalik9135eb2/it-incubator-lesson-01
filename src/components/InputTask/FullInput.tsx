@@ -3,7 +3,7 @@ import {MessageType} from "./InputTask";
 
 type FullInputPropsType = {
     message: Array<MessageType>
-    setMessage: any
+    setMessage: (messae: Array<MessageType>) => void
 }
 
 
@@ -19,13 +19,14 @@ export const FullInput = (props:FullInputPropsType) => {
     }
 
     const onClickBtnHandler = () => {
-       props.setMessage([...props.message, {message: text}])
+       props.setMessage([{message: text},...props.message])
+        setText("")
 
     }
 
     return(
         <div>
-            <input onChange={onChangeInputHandler}/>
+            <input value={text} onChange={onChangeInputHandler}/>
             <button onClick={() => {onClickBtnHandler()}}>+</button>
         </div>
     )
